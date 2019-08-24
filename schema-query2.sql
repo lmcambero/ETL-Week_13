@@ -2,6 +2,8 @@
 DROP TABLE museums_df;
 DROP TABLE tripadvisor_df;
 
+
+-- Create table musuem
 CREATE TABLE museums_df
 (
    	"Museum Name" varchar,
@@ -14,38 +16,13 @@ CREATE TABLE museums_df
 
 
 -- Create table musuem
-CREATE TABLE public.museums_df
+CREATE TABLE tripadvisor_df
 (
-   	"Museum Name" varchar PRIMARY KEY 
-	-- character varying(1000) NOT NULL
-	-- COLLATE pg_catalog."default" NOT NULL -- PRIMARY KEY,
-	"Museum Type" text COLLATE pg_catalog."default" NOT NULL,
-	"City" text COLLATE pg_catalog."default" NOT NULL,
-	"State" text COLLATE pg_catalog."default" NOT NULL,
-   	"Income" money,
-   	"Revenue" money
-)
-WITH (
-   OIDS = FALSE
-)
-TABLESPACE pg_default;
-ALTER TABLE public.museums_df
-   OWNER to postgres;
-
-
--- Create table tripadvisor
-CREATE TABLE public.tripadvisor_df
-(
-   	"Museum Name" character varying(1000) COLLATE pg_catalog."default" NOT NULL PRIMARY KEY,
+	"Museum Name" varchar NOT NULL,
 	"Rating" numeric NOT NULL,
-   	"Review Count" character(10) COLLATE pg_catalog."default"
+   	"Review Count" varchar
 )
-WITH (
-   OIDS = FALSE
-)
-TABLESPACE pg_default;
-ALTER TABLE public.tripadvisor_df
-   OWNER to postgres;   
+
 
 
 -- Query to check successful load
@@ -79,10 +56,10 @@ CREATE TABLE museums_results
 SELECT *
 FROM museums_results;
 
+ALTER TABLE museums_results drop column "Museum Name2";
+
 SELECT *
 FROM museums_results
 ORDER BY "Income" DESC
 LIMIT 10;
-
-ALTER TABLE museums_results drop column "Museum Name2";
 
