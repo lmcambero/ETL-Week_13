@@ -2,11 +2,23 @@
 DROP TABLE museums_df;
 DROP TABLE tripadvisor_df;
 
+CREATE TABLE museums_df
+(
+   	"Museum Name" varchar,
+	"Museum Type" text,
+	"City" text,
+	"State" text,
+   	"Income" money,
+   	"Revenue" money
+)
+
 
 -- Create table musuem
 CREATE TABLE public.museums_df
 (
-   	"Museum Name" character varying(1000) COLLATE pg_catalog."default" NOT NULL PRIMARY KEY,
+   	"Museum Name" varchar PRIMARY KEY 
+	-- character varying(1000) NOT NULL
+	-- COLLATE pg_catalog."default" NOT NULL -- PRIMARY KEY,
 	"Museum Type" text COLLATE pg_catalog."default" NOT NULL,
 	"City" text COLLATE pg_catalog."default" NOT NULL,
 	"State" text COLLATE pg_catalog."default" NOT NULL,
@@ -37,10 +49,9 @@ ALTER TABLE public.tripadvisor_df
 
 
 -- Query to check successful load
-SELECT * FROM tripadvisor_df;
-
 SELECT * FROM museums_df;
 
+SELECT * FROM tripadvisor_df;
 
 -- Join tables
 SELECT *
