@@ -1,0 +1,47 @@
+Project Report
+
+Museums of United States Databases
+
+The goal of this mini project was to match two databases about museums in the United States and see if the revenue that the museum generates is linked
+to positive reviews in Tripadvisor. 
+
+Extract: your original data sources and how the data was formatted (CSV, JSON, pgAdmin 4, etc).
+
+The original data sources that we found were available at kaggle. These databases wer:
+
+1. (CSV file) A list of all museums in the United States. This database contains 33,072 different museums (rows) and 25 columns containing different data 
+such as the 'Museum ID’, ‘Museum Name’, ‘Legal Name’, ‘Alternate Name’,‘Museum Type’, ‘Institution Name’,‘Street Address (Administrative Location)’,
+‘City (Administrative Location)’, ‘State (Administrative Location)’,Zip Code (Administrative Location)’,‘Street Address (Physical Location)’, 
+‘City (Physical Location)’,‘State (Physical Location)’, ‘Zip Code (Physical Location)’,‘Phone Number’, ‘Latitude’, ‘Longitude’, ‘Locale Code (NCES)’,
+‘County Code (FIPS)’, ‘State Code (FIPS)’, ‘Region Code (AAM)’,‘Employer ID Number’, ‘Tax Period’, ‘Income’, ‘Revenue’.
+
+2. (CSV File) A list of museums in the United States that are reviewed in the travel webpage Tripadvisor. This database contains 1,013 different museums. 
+In the 13 columns of this file there was information stating ‘Address’, ‘Description’, ‘FeatureCount’, ‘Fee’,‘Langtitude’, ‘Latitude’, ‘LengthOfVisit’, 
+‘MuseumName’, ‘PhoneNum’,‘Rank’, ‘Rating’, ‘ReviewCount’, ‘TotalThingsToDo’.
+
+
+Transform: what data cleaning or transformation was required.
+
+The catalog database was very complete regarding museum information, however, there wer some empty spaces in the income and revenue data. 
+The tripadvisor database was inconsistent in the museum zip codes and addresses. We startet the project, trying to find a link between zip codes, 
+addresses or coordinates of the museums, but due to the different information it was not possible. 
+
+Addresses were different, zip codes were repeated due to several museums in one zip code, and coordinates had different amount of decimals. 
+Finally we were able to match the museum names. 
+
+We opened the CSV's in a jupyter notebook and began cleaning the data, until 2 different dataframes were obtained. These dataframes contained less columns.
+We had a museums_df with Museum Name, Museum Type, City, State, Income and Revenue.  The other dataframe, tripadvisor_df, has the Museum Name,
+rating and review count. 
+
+
+Load: the final database, tables/collections, and why this was chosen.
+
+Both dataframes were loaded to postgresadmin. A Museums Database was created, and thre tables were created.
+The first one was the museums_df as a table with the columns already mentioned above. The second one was the tripadvisor_df as table. Finally, after
+merging both tables and obtaining the results of the top 10 museums in the US considering rating vs revenue, we created a museums_results table to 
+download as CSV.
+
+We conclude that the Musuems that belong to the Yale University are the ones that generate the highest profit in the United States and have reviwes of 5
+and 4.5 stars. 
+The museum with the most review counts in Tripadvisor is the American Museum of Natural History, located in New York City, and generates enough revenue
+to appear in our top 10 list. 
